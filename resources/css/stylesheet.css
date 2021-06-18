@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+#logo {
+  display: flex;
+  justify-content: center;
+  margin: 15px auto;
+}
+
+#logo-img {
+  width: 10rem;
+  height: 10rem;
+  margin-bottom: 1rem;
+}
+
+#header {
+  position: relative;
+  font-family: 'Lobster', cursive;
+  font-size: 5rem;
+  top: 2rem;
+}
+
+.nav-item {
+  margin: 1.5rem;
+  padding: 1rem;
+}
+
+.nav-item:hover {
+  background-color: rgb(215, 223, 223);
+  border-radius: 25px;
+  transition: background-color 1.5s;
+  border: 2px solid;
+}
+
+.nav-link {
+  font-size: 1.5rem;
+}
+
+#decider-container {
+  width: 50%;
+  left: 25%;
+}
+
+.card-text.meal-subcaption {
+  font-size: 1.5rem;
+}
+
+#pizza-btn:hover {
+  animation: rotation 4s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
