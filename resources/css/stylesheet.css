@@ -35,9 +35,14 @@
   font-size: 1.5rem;
 }
 
-#decider-container {
+#main-container {
   width: 50%;
   left: 25%;
+  margin-bottom: 20px;
+}
+
+#main-content {
+
 }
 
 .card-text.meal-subcaption {
@@ -46,6 +51,28 @@
 
 #pizza-btn:hover {
   animation: rotation 4s infinite linear;
+}
+
+.answer-img {
+  margin: 20px 20px;
+  width: 200px;
+  height: 200px;
+}
+
+.answer-fig {
+ 
+}
+
+.answer-caption {
+  font-size: 2rem;
+  font-family: 'Lobster', cursive;
+}
+
+.question-choices {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 @keyframes rotation {

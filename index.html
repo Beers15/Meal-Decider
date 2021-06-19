@@ -38,19 +38,20 @@
       </div>
     </nav>
 
-    <div id="decider-container" class="card text-center">
-      <div class="card-body">
-        <h2 class="card-title">Click the pizza to get started!</h2>
-        <p class="card-text meal-subcaption">Mealtime indecisiveness has never been easier to solve.</p>
-        <div id="pizza-btn" onclick="">
-          <img src="resources/imgs/pizza.png" height="150px" width="150px" alt="pizza button">
+    <div id="main-container" class="card text-center">
+      <div id="main-content">
+        <div class="card-body">
+          <h2 class="card-title">Click the pizza to get started!</h2>
+          <p class="card-text meal-subcaption">Mealtime indecisiveness has never been easier to solve.</p>
+          <img id="pizza-btn" src="resources/imgs/pizza.png" height="150px" width="150px" alt="pizza button">   
         </div>
-     
-      </div>
-      <div class="card-footer text-muted">
-        You've used the meal decider # times.
+        <div class="card-footer text-muted">
+          You've used the meal decider # times.
+        </div>
       </div>
     </div>
+     
+    <script src="resources/scripts/mealDecider.js"></script>
 
     <!--Bootstrap scripts-->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
