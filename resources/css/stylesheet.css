@@ -74,7 +74,7 @@
 
 #end-pizza-icon {
   animation: rotation .5s linear;
-  animation-iteration-count: 6;
+  animation-iteration-count: 1;
   height: 150px;
   width: 150px;
 }
