@@ -35,7 +35,7 @@
   font-size: 1.5rem;
 }
 
-.card {
+#decider-card, #solver-card {
   width: 50%;
   left: 25%;
   margin-bottom: 20px;
@@ -74,11 +74,10 @@
 
 #end-pizza-icon {
   animation: rotation .5s linear;
-  animation-iteration-count: 1;
+  animation-iteration-count: 4;
   height: 150px;
   width: 150px;
 }
-
 
 @keyframes rotation {
   from {
@@ -87,4 +86,23 @@
   to {
     transform: rotate(359deg);
   }
+}
+
+#meal-options-container {
+  display: flex;
+  justify-content: center;
+}
+
+#right-meal-options, #left-meal-options {
+  width: 20rem;
+}
+
+
+#add-option-form {
+  margin-bottom: 3rem;
+  padding: 1rem 0 1.5rem 0;
+}
+
+#option-submit-btn {
+  margin-top: 1rem;
 }

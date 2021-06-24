@@ -71,15 +71,20 @@ function getResult() {
     result.innerText = chooseFoodItem();
     let restartBtn = document.createElement('button');
     restartBtn.innerText = "Start Over";
-    restartBtn.addEventListener('click', function () {
-      localStorage.clear();
-      window.location.reload();
-    })
+    restartBtn.addEventListener('click', function () {window.location.reload()})
 
     endAnimationImg.parentNode.replaceChild(result, endAnimationImg);
 
     result.parentNode.appendChild(restartBtn);
   });
+
+  if(!localStorage.getItem("timesUsed")) {
+    localStorage.setItem("timesUsed", 1);
+  } else {
+    let timesUsed = parseInt(localStorage.getItem("timesUsed")) + 1;
+    localStorage.setItem("timesUsed", timesUsed.toString());
+    console.log("User has used decider " + localStorage.getItem("timesUsed") + "times");
+  }
 }
 
 function executeEndAnimation() {
@@ -138,7 +143,7 @@ function chooseFoodItem() {
   return matches[(Math.floor(Math.random() * matches.length))].food;
 }
 
-function executeFigClick(key, value, choice, executeFigClick = false, figures = []) {
+function executeFigClick(key, value, choice, question = "", executeFigClick = false, figures = []) {
   console.log("User chose " + choice);
   localStorage.setItem(key, value)
 
@@ -146,27 +151,35 @@ function executeFigClick(key, value, choice, executeFigClick = false, figures = 
 
   if(executeFigClick) {
     let choices = document.querySelector('.question-choices');
-    choices.parentNode.replaceChild(makeQuestion("Generally speaking, what kind of food are you thinking of having?", figures), choices);
+    choices.parentNode.replaceChild(makeQuestion(question, figures), choices);
   } else {
     getResult();
   }
 }
 
+function clearStorage() {
+  const items = ["vegitarian", "hot", "area", "type"]
+  for(item of items) {
+    localStorage.removeItem(item);
+  }
+}
+
 //event listeners for all choice buttons in meal decider
 document.querySelector('#pizza-btn').addEventListener('click', function () {
-  localStorage.clear();
+  clearStorage();
+  console.log(localStorage)
 
   mealDecider.replaceChild(makeQuestion("What Meal of the day will you be eating?", [bfFig, lunchFig, dinFig]), contents);
 })
 
-bfFig.addEventListener('click', function() {executeFigClick("type", "Breakfast", "Breakfast", true, [vegFig, meatFig])})
-lunchFig.addEventListener('click', function() {executeFigClick("type", "Lunch", "Lunch", true, [vegFig, meatFig])})
-dinFig.addEventListener('click', function() {executeFigClick("type", "Dinner", "Dinner", true, [vegFig, meatFig])})
-vegFig.addEventListener('click', function() {executeFigClick("vegitarian", true, "vegitarian", true, [hotFig, notHotFig])})
-meatFig.addEventListener('click', function() {executeFigClick("vegitarian", false, "not vegitarian", true, [hotFig, notHotFig])})
-hotFig.addEventListener('click', function() {executeFigClick("hot", true, "hot", true, [hotdogFig, empanadaFig, sushiFig, pastaFig])})
-notHotFig.addEventListener('click', function() {executeFigClick("hot", false, "not hot", true, [hotdogFig, empanadaFig, sushiFig, pastaFig])})
-hotdogFig.addEventListener('click', function() {executeFigClick("area", "NAmerica", false)})
-empanadaFig.addEventListener('click', function() {executeFigClick("area", "SAmerica", false)})
-sushiFig.addEventListener('click', function() {executeFigClick("area", "Asia", false)})
-pastaFig.addEventListener('click', function() {executeFigClick("area", "Europe", false)})
+bfFig.addEventListener('click', function() {executeFigClick("type", "Breakfast", "Breakfast", "Are you looking for vegitarian options?", true, [vegFig, meatFig])})
+lunchFig.addEventListener('click', function() {executeFigClick("type", "Lunch", "Lunch", "Are you looking for vegitarian options?", true, [vegFig, meatFig])})
+dinFig.addEventListener('click', function() {executeFigClick("type", "Dinner", "Dinner", "Are you looking for vegitarian options?", true, [vegFig, meatFig])})
+vegFig.addEventListener('click', function() {executeFigClick("vegitarian", true, "vegitarian", "Do you want a hot meal", true, [hotFig, notHotFig])})
+meatFig.addEventListener('click', function() {executeFigClick("vegitarian", false, "not vegitarian", "Do you want a hot meal", true, [hotFig, notHotFig])})
+hotFig.addEventListener('click', function() {executeFigClick("hot", true, "hot", "Which of area would you want to have food from?", true, [hotdogFig, empanadaFig, sushiFig, pastaFig])})
+notHotFig.addEventListener('click', function() {executeFigClick("hot", false, "not hot", "Which of area would you want to have food from?", true, [hotdogFig, empanadaFig, sushiFig, pastaFig])})
+hotdogFig.addEventListener('click', function() {executeFigClick("area", "NAmerica", "NAmerica", "", false)})
+empanadaFig.addEventListener('click', function() {executeFigClick("area", "SAmerica", "SAmerica")})
+sushiFig.addEventListener('click', function() {executeFigClick("area", "Asia", "Asia")})
+pastaFig.addEventListener('click', function() {executeFigClick("area", "Europe", "Europe")})

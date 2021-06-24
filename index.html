@@ -39,7 +39,7 @@
       </div>
     </nav>
 
-    <div class="card text-center">
+    <div id="decider-card" class="card text-center">
       <div id="main-container" class="card-body">
         <h2 class="card-title">Click the pizza to get started!</h2>
         <div id="main-content">
@@ -48,11 +48,15 @@
         </div>
       </div>
       <div class="card-footer text-muted">
-        You've used the meal decider # times.
+        
       </div>
     </div>
      
     <script src="resources/scripts/mealDecider.js"></script>
+    <script>
+      document.querySelector(".card-footer").innerText = 
+      "You've used the Meal Decider " + (localStorage.getItem("timesUsed") ? localStorage.getItem("timesUsed") : 0) + " times.";
+    </script>
 
     <!--Bootstrap scripts-->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
