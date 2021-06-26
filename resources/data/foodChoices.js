@@ -300,6 +300,13 @@ const foodChoices = [{
     vegitarian: true
   },
   {
+    food:"Papa a la huancaina",
+    type: "Dinner",
+    area:"SAmerica",
+    hot: false,
+    vegitarian: true
+  },
+  {
     food:"Ackee and Saltfish",
     type: "Breakfast",
     area:"Europe",

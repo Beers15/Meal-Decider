@@ -22,7 +22,7 @@ const empanadaFig = makeFigure(empanadaImg, "South American");
 const pastaImg = makeImage("resources/imgs/pasta.png", "pasta");
 const pastaFig = makeFigure(pastaImg, "Europe");
 const sushiImg = makeImage("resources/imgs/sushi.png", "hot");
-const sushiFig = makeFigure(sushiImg, "Asian");
+const sushiFig = makeFigure(sushiImg, "Asia");
 const hotdogImg = makeImage("resources/imgs/hotdog.png", "hotdog");
 const hotdogFig = makeFigure(hotdogImg, "North American");
 
@@ -177,8 +177,8 @@ lunchFig.addEventListener('click', function() {executeFigClick("type", "Lunch", 
 dinFig.addEventListener('click', function() {executeFigClick("type", "Dinner", "Dinner", "Are you looking for vegitarian options?", true, [vegFig, meatFig])})
 vegFig.addEventListener('click', function() {executeFigClick("vegitarian", true, "vegitarian", "Do you want a hot meal", true, [hotFig, notHotFig])})
 meatFig.addEventListener('click', function() {executeFigClick("vegitarian", false, "not vegitarian", "Do you want a hot meal", true, [hotFig, notHotFig])})
-hotFig.addEventListener('click', function() {executeFigClick("hot", true, "hot", "Which of area would you want to have food from?", true, [hotdogFig, empanadaFig, sushiFig, pastaFig])})
-notHotFig.addEventListener('click', function() {executeFigClick("hot", false, "not hot", "Which of area would you want to have food from?", true, [hotdogFig, empanadaFig, sushiFig, pastaFig])})
+hotFig.addEventListener('click', function() {executeFigClick("hot", true, "hot", "Where would you want to have food from?", true, [hotdogFig, empanadaFig, sushiFig, pastaFig])})
+notHotFig.addEventListener('click', function() {executeFigClick("hot", false, "not hot", "Where would you want to have food from?", true, [hotdogFig, empanadaFig, sushiFig, pastaFig])})
 hotdogFig.addEventListener('click', function() {executeFigClick("area", "NAmerica", "NAmerica", "", false)})
 empanadaFig.addEventListener('click', function() {executeFigClick("area", "SAmerica", "SAmerica")})
 sushiFig.addEventListener('click', function() {executeFigClick("area", "Asia", "Asia")})

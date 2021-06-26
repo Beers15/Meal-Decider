@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
   <head>
     <meta charset="utf-8">
@@ -43,45 +42,49 @@
       <div id="main-container" class="card-body">
         <h2 class="card-title">Meal Conflict Solver</h2>
         <div id="main-content">
-          <p class="card-text meal-subcaption">Is your group unable to settle on what to eat? Let us decide!</p>
+          <p class="card-text meal-subcaption">Is your group unable to settle on what to eat? <span id="meal-subcaption-flair">Let us decide!</span></p>
           
           <div class ="card text-center">
-          <form id="add-option-form">
-            <fieldset>
-              <legend>Add Option</legend>
-              <label for="food-name">Meal</label><br>
-              <input type="text" id="food-name" name="foodName"><br>
-              <label for="people-count">Number of people intrested</label><br>
-              <input type="text" id="people-count" name="peopleCount"><br>
-              <input id="option-submit-btn" type="submit" value="Submit">
-            </fieldset>
-          </form>
-        </div>
-          <div id="meal-options-container"> 
-            <div id="left-meal-options" class="card">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">TEST</li>
-                <li class="list-group-item">TEST</li>
-                <li class="list-group-item">TEST</li>
-              </ul>
+            <form id="add-option-form">
+              <fieldset>
+                <legend id="option-form-header">Add Option</legend>
+                <label for="meal-name">Meal</label><br>
+                <input id="meal-name" type="text" name="foodName" required><br>
+                <label for="people-count">Number of people intrested</label><br>
+                <input id="people-count" type="number" name="peopleCount" min="1" max="10" required><br>
+                <input id="add-option-btn" type="submit" value="Add Meal Idea"><br>
+              </fieldset>
+            </form>
+            <hr>
+            <div id="meal-options-container"> 
+              <div id="left-meal-options" class="card">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">TEST</li>
+                </ul>
+              </div>
+              <div id="right-meal-options" class="card">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">TEST</li>
+                </ul>
+              </div>
             </div>
-
-            <div id="right-meal-options" class="card">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">TEST</li>
-                <li class="list-group-item">TEST</li>
-                <li class="list-group-item">TEST</li>
-              </ul>
-            </div>
-          </div> 
+            <hr>
+            <form id="select-winner-form">
+              <fieldset>
+                <label for="weighted-choice">Weighted Choice</label>  
+                <input id="weighted-choice" type="radio" name="choiceType" value="weighted" checked>
+                <label for="random-choice">Random Choice</label>
+                <input id="random-choice" type="radio" name="choiceType" value="random"><br>
+                <input id="option-submit-btn" type="submit" value="Choose a winner">
+              </fieldset>
+            </form>
+          </div>
         </div>
-      </div>
-      <div class="card-footer text-muted">
-        
-      </div>
+      <div class="card-footer text-muted"></div>
     </div>
-     
 
+    <script src="../resources/scripts/mealConflictSolver.js"></script>
+     
     <!--Bootstrap scripts-->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

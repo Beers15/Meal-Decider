@@ -35,6 +35,10 @@
   font-size: 1.5rem;
 }
 
+.card {
+  filter: brightness(.97);
+}
+
 #decider-card, #solver-card {
   width: 50%;
   left: 25%;
@@ -45,8 +49,14 @@
 
 }
 
-.card-text.meal-subcaption {
+.meal-subcaption {
   font-size: 1.5rem;
+}
+
+#meal-subcaption-flair {
+  text-decoration: underline;
+  text-decoration-color: red;
+  font-weight: 700;
 }
 
 .answer-img {
@@ -88,6 +98,11 @@
   }
 }
 
+#option-form-header {
+  font-size: 2rem;
+  font-family: 'Lobster', cursive;
+}
+
 #meal-options-container {
   display: flex;
   justify-content: center;
@@ -95,14 +110,23 @@
 
 #right-meal-options, #left-meal-options {
   width: 20rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 
-
 #add-option-form {
-  margin-bottom: 3rem;
   padding: 1rem 0 1.5rem 0;
 }
 
-#option-submit-btn {
+#add-option-btn {
   margin-top: 1rem;
+}
+
+#option-submit-btn {
+  margin-bottom: 1rem;
+}
+
+#add-option-btn:active, #option-submit-btn:active {
+  filter: brightness(0.7);
+  border: solid 1px red;
 }
