@@ -69,9 +69,10 @@ function getResult() {
     let result = document.createElement('h3');
  
     result.innerText = chooseFoodItem();
+    result.className = "meal-subcaption-flair";
     let restartBtn = document.createElement('button');
     restartBtn.innerText = "Start Over";
-    restartBtn.addEventListener('click', function () {window.location.reload()})
+    restartBtn.addEventListener('click', function() {window.location.reload();})
 
     endAnimationImg.parentNode.replaceChild(result, endAnimationImg);
 

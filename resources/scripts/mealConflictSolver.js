@@ -6,10 +6,21 @@ function MealChoice(mealName, numPeople) {
   this.numPeople = numPeople;
 }
 
-function selectWinner() {
+function selectWinnerWeighted(mealOptions) {
+  let weightedOptions = [];
 
+  /* create array with multiple entries for options with multiple people intrested,
+     proportionally increases likelyhood of choosing such options */
+  for(let i = 0; i < mealOptions.length; i++) {
+    for(let j = 0; j < mealOptions[i].numPeople; j++) {
+      weightedOptions.push(mealOptions[i]);
+    }
+  }
+
+  let diceRoll = Math.floor(Math.random() * weightedOptions.length);
+  console.log(weightedOptions);
+  return weightedOptions[diceRoll];
 }
-
 
 function selectWinnerRandom(mealOptions) {
   let diceRoll = Math.floor(Math.random() * mealOptions.length);
@@ -30,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function() {
   for(let i = 0; i < mealOptions.length; i++) {
     let option = document.createElement('li');
     option.className = "list-group-item";
-    option.innerText = mealOptions[i].mealName;
+    option.innerHTML = "<p>" + mealOptions[i].mealName + "   (" + mealOptions[i].numPeople + "&#x263B;)</p>";
     
     if(i % 2 === 0) {
       leftOptions.firstChild.nextSibling.appendChild(option)
@@ -59,12 +70,12 @@ addOptionform.addEventListener('submit', function(e) {
 
   let option = document.createElement('li');
   option.className = "list-group-item";
-  option.innerText = mealOption.mealName;
+  option.innerHTML = "<p>" + mealOption.mealName + "   (" + mealOption.numPeople + "&#x263B;)</p>";
   
   if((mealOptions.length - 1) % 2 === 0) {
-    leftOptions.firstChild.nextSibling.appendChild(option)
+    leftOptions.firstChild.nextSibling.appendChild(option);
   } else {
-    rightOptions.firstChild.nextSibling.appendChild(option)
+    rightOptions.firstChild.nextSibling.appendChild(option);
   }
 })
 
@@ -75,6 +86,9 @@ selectWinnerForm.addEventListener('submit', function(e) {
 
   if(localStorage.getItem('mealOptions') !== null) {
     mealOptions = JSON.parse(localStorage.getItem('mealOptions'));
+  } else {
+    console.log("No entries given...");
+    return;
   }
 
   let weightedChoice = document.querySelector('#weighted-choice').checked ? true : false;
@@ -82,20 +96,41 @@ selectWinnerForm.addEventListener('submit', function(e) {
   let winner;
 
   if(weightedChoice) {
-    //winner = selectWinner(mealOption);
+    winner = selectWinnerWeighted(mealOptions);
   } else {
     winner = selectWinnerRandom(mealOptions);
   }
 
+  let resultContent = document.createElement('div');
   let result = document.createElement('h3');
   result.innerText = winner.mealName;
+  result.className = "meal-subcaption-flair";
+  let resultCaption = document.createElement('h2');
+  resultCaption.innerText = "Your Meal Choice is:";
+  resultCaption.setAttribute('id', 'solver-result-header');
 
   let restartBtn = document.createElement('button');
   restartBtn.innerText = "Start Over";
-  restartBtn.addEventListener('click', function (){window.location.reload()})
+  restartBtn.setAttribute('id', 'solver-restart-btn');
+  restartBtn.addEventListener('click', function() { 
+    window.location.reload() 
+    localStorage.removeItem("mealOptions");
+  })
+
+  resultContent.appendChild(resultCaption);
+  resultContent.appendChild(result);
+  resultContent.appendChild(restartBtn);
 
   let mainContainer = document.querySelector('#main-container');
-  mainContainer.parentNode.replaceChild(result, mainContainer);
+  mainContainer.parentNode.replaceChild(resultContent, mainContainer);
 
   result.parentNode.appendChild(restartBtn);
+
+  if(!localStorage.getItem("timesSolverUsed")) {
+    localStorage.setItem("timesSolverUsed", 1);
+  } else {
+    let timesUsed = parseInt(localStorage.getItem("timesSolverUsed")) + 1;
+    localStorage.setItem("timesSolverUsed", timesUsed.toString());
+    console.log("User has used decider " + localStorage.getItem("timesSolverUsed") + "times");
+  }
 })

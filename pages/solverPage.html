@@ -29,7 +29,7 @@
             <a class="nav-link" href="solverPage.html">Meal Conflict Solver</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="about.html">About</a>
+            <a class="nav-link" href="aboutPage.html">About</a>
           </li>
         </ul>
       </div>
@@ -39,7 +39,7 @@
       <div id="main-container" class="card-body">
         <h2 class="card-title">Meal Conflict Solver</h2>
         <div id="main-content">
-          <p class="card-text meal-subcaption">Is your group unable to settle on what to eat? <span id="meal-subcaption-flair">Let us decide!</span></p>
+          <p class="card-text meal-subcaption">Is your group unable to settle on what to eat? <span class="meal-subcaption-flair">Let us decide!</span></p>
           
           <div class ="card text-center">
             <form id="add-option-form">
@@ -79,6 +79,10 @@
     </div>
 
     <script src="../resources/scripts/mealConflictSolver.js"></script>
+    <script>
+      document.querySelector(".card-footer").innerText = 
+      "You've used the Meal Conflict Solver " + (localStorage.getItem("timesSolverUsed") ? localStorage.getItem("timesSolverUsed") : 0) + " times.";
+    </script>
      
     <!--Bootstrap scripts-->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

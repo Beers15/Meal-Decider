@@ -53,7 +53,7 @@
   font-size: 1.5rem;
 }
 
-#meal-subcaption-flair {
+.meal-subcaption-flair {
   text-decoration: underline;
   text-decoration-color: red;
   font-weight: 700;
@@ -114,6 +114,10 @@
   margin-top: 1rem;
 }
 
+.list-group-item {
+  padding-top: 10rem;
+}
+
 #add-option-form {
   padding: 1rem 0 1.5rem 0;
 }
@@ -129,4 +133,12 @@
 #add-option-btn:active, #option-submit-btn:active {
   filter: brightness(0.7);
   border: solid 1px red;
+}
+
+#solver-result-header {
+  margin-top: 2rem;
+}
+
+#solver-restart-btn {
+  margin-bottom: 2rem;
 }
