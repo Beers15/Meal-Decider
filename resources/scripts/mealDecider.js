@@ -61,6 +61,8 @@ function makeQuestion(question, answers) {
 }
 
 function getResult() {
+  /* Upon result button being clicked determines a random meal based of of user's answer to each question
+     Creates a new element with result and start over button that replaces the existing main content. */
   let endAnimationImg = executeEndAnimation();
 
   endAnimationImg.addEventListener('animationend', function() {
@@ -79,6 +81,7 @@ function getResult() {
     result.parentNode.appendChild(restartBtn);
   });
 
+  //Updates times used value upon completion 
   if(!localStorage.getItem("timesUsed")) {
     localStorage.setItem("timesUsed", 1);
   } else {
@@ -102,6 +105,7 @@ function executeEndAnimation() {
 }
 
 function chooseFoodItem() {
+  //Parses meal options data to find possible matches that match that the values user entered and stores matches in an array
   const matches = foodChoices.filter((choice) => {
     let match = true;
     for(let i = 0; i < localStorage.length; i++) {
@@ -148,8 +152,7 @@ function executeFigClick(key, value, choice, question = "", executeFigClick = fa
   console.log("User chose " + choice);
   localStorage.setItem(key, value)
 
-  console.log(localStorage)
-
+  //Determines what set of figures are to replace existing main content after a user choice is made
   if(executeFigClick) {
     let choices = document.querySelector('.question-choices');
     choices.parentNode.replaceChild(makeQuestion(question, figures), choices);
@@ -165,14 +168,15 @@ function clearStorage() {
   }
 }
 
-//event listeners for all choice buttons in meal decider
-document.querySelector('#pizza-btn').addEventListener('click', function () {
+document.querySelector('#pizza-btn').addEventListener('click', function() {
+  //Initializes app and replaces main content with first question + answers
   clearStorage();
   console.log(localStorage)
 
   mealDecider.replaceChild(makeQuestion("What Meal of the day will you be eating?", [bfFig, lunchFig, dinFig]), contents);
 })
 
+//Add event listeners for every meal option choice figure
 bfFig.addEventListener('click', function() {executeFigClick("type", "Breakfast", "Breakfast", "Are you looking for vegitarian options?", true, [vegFig, meatFig])})
 lunchFig.addEventListener('click', function() {executeFigClick("type", "Lunch", "Lunch", "Are you looking for vegitarian options?", true, [vegFig, meatFig])})
 dinFig.addEventListener('click', function() {executeFigClick("type", "Dinner", "Dinner", "Are you looking for vegitarian options?", true, [vegFig, meatFig])})

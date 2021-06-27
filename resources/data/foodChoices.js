@@ -559,7 +559,7 @@ const foodChoices = [{
     vegitarian: true
   },
   {
-    food:"Chicken and Sesame Noodles",
+    food:"Sesame Noodles",
     type: "Dinner",
     area:"Asia",
     hot: false,

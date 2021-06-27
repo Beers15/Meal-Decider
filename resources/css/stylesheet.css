@@ -20,7 +20,6 @@
 }
 
 .nav-item {
-  margin: 1.5rem;
   padding: 1rem;
 }
 
@@ -43,10 +42,6 @@
   width: 50%;
   left: 25%;
   margin-bottom: 20px;
-}
-
-#main-content {
-
 }
 
 .meal-subcaption {
@@ -141,4 +136,30 @@
 
 #solver-restart-btn {
   margin-bottom: 2rem;
+}
+
+#about-profile-img {
+  border-radius: 50%;
+  background-color: white;
+}
+
+#about-header {
+  font-family: 'Lobster', cursive;
+  margin-top: 1rem;
+}
+
+#about-text {
+  margin: 2rem 2rem;
+  max-width: 25rem;
+}
+
+#main-about-content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#about-profile {
+  margin: 1rem;
 }

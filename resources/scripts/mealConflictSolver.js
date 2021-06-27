@@ -9,28 +9,30 @@ function MealChoice(mealName, numPeople) {
 function selectWinnerWeighted(mealOptions) {
   let weightedOptions = [];
 
-  /* create array with multiple entries for options with multiple people intrested,
+  /* Creates array with multiple entries for options with multiple people intrested, then
      proportionally increases likelyhood of choosing such options */
   for(let i = 0; i < mealOptions.length; i++) {
     for(let j = 0; j < mealOptions[i].numPeople; j++) {
       weightedOptions.push(mealOptions[i]);
     }
   }
-
+  //Selects random winner from created array
   let diceRoll = Math.floor(Math.random() * weightedOptions.length);
   console.log(weightedOptions);
   return weightedOptions[diceRoll];
 }
 
 function selectWinnerRandom(mealOptions) {
+  //Selects random winner from meal options array
   let diceRoll = Math.floor(Math.random() * mealOptions.length);
 
   return mealOptions[diceRoll];
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+function populateLists(initialize) {
   let mealOptions = [];
 
+  //Grabs exisiting meal option values from local storage
   if(localStorage.getItem('mealOptions') !== null) {
     mealOptions = JSON.parse(localStorage.getItem('mealOptions'));
   }
@@ -38,45 +40,48 @@ document.addEventListener("DOMContentLoaded", function() {
   let leftOptions = document.querySelector('#left-meal-options');
   let rightOptions = document.querySelector('#right-meal-options');
 
-  for(let i = 0; i < mealOptions.length; i++) {
+
+  if(initialize) {
+    /* If page is being loaded, creates list items for each meal option and alternate between 
+       inserting them in left and right unorder lists */
+    for(let i = 0; i < mealOptions.length; i++) {
+      let option = document.createElement('li');
+      option.className = "list-group-item";
+      option.innerHTML = "<p>" + mealOptions[i].mealName + "   (" + mealOptions[i].numPeople + "&#x263B;)</p>";
+      
+      if(i % 2 === 0) {
+        leftOptions.firstChild.nextSibling.appendChild(option)
+      } else {
+        rightOptions.firstChild.nextSibling.appendChild(option)
+      }
+    }
+  } else {
+    /* If a new meal option is submitted from the form, creates list item from it and 
+       inserts it in the appropriate unordered list */
+    let mealOption = new MealChoice(document.querySelector('#meal-name').value, document.querySelector('#people-count').value);
+    mealOptions.push(mealOption);
+    localStorage.setItem('mealOptions', JSON.stringify(mealOptions));
+
     let option = document.createElement('li');
     option.className = "list-group-item";
-    option.innerHTML = "<p>" + mealOptions[i].mealName + "   (" + mealOptions[i].numPeople + "&#x263B;)</p>";
+    option.innerHTML = "<p>" + mealOption.mealName + "   (" + mealOption.numPeople + "&#x263B;)</p>";
     
-    if(i % 2 === 0) {
-      leftOptions.firstChild.nextSibling.appendChild(option)
-    } 
-    else {
-      rightOptions.firstChild.nextSibling.appendChild(option)
+    if((mealOptions.length - 1) % 2 === 0) {
+      leftOptions.firstChild.nextSibling.appendChild(option);
+    } else {
+      rightOptions.firstChild.nextSibling.appendChild(option);
     }
   }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  populateLists(true);
 });
 
 addOptionform.addEventListener('submit', function(e) {
   e.preventDefault();
 
-  let mealOptions = [];
-
-  if(localStorage.getItem('mealOptions') !== null) {
-    mealOptions = JSON.parse(localStorage.getItem('mealOptions'));
-  }
-
-  let mealOption = new MealChoice(document.querySelector('#meal-name').value, document.querySelector('#people-count').value);
-  mealOptions.push(mealOption);
-  localStorage.setItem('mealOptions', JSON.stringify(mealOptions));
-
-  let leftOptions = document.querySelector('#left-meal-options');
-  let rightOptions = document.querySelector('#right-meal-options');
-
-  let option = document.createElement('li');
-  option.className = "list-group-item";
-  option.innerHTML = "<p>" + mealOption.mealName + "   (" + mealOption.numPeople + "&#x263B;)</p>";
-  
-  if((mealOptions.length - 1) % 2 === 0) {
-    leftOptions.firstChild.nextSibling.appendChild(option);
-  } else {
-    rightOptions.firstChild.nextSibling.appendChild(option);
-  }
+  populateLists(false);
 })
 
 selectWinnerForm.addEventListener('submit', function(e) {
@@ -84,6 +89,7 @@ selectWinnerForm.addEventListener('submit', function(e) {
 
   let mealOptions = [];
 
+  //Grabs exisiting meal option values from local storage
   if(localStorage.getItem('mealOptions') !== null) {
     mealOptions = JSON.parse(localStorage.getItem('mealOptions'));
   } else {
@@ -91,6 +97,8 @@ selectWinnerForm.addEventListener('submit', function(e) {
     return;
   }
 
+  /* Determines what kind of result user wants and calculates meal option winner accordingly
+     Creates a new element with result and start over button that replaces the existing main content. */
   let weightedChoice = document.querySelector('#weighted-choice').checked ? true : false;
 
   let winner;
@@ -126,6 +134,7 @@ selectWinnerForm.addEventListener('submit', function(e) {
 
   result.parentNode.appendChild(restartBtn);
 
+  //Updates times used value upon completion 
   if(!localStorage.getItem("timesSolverUsed")) {
     localStorage.setItem("timesSolverUsed", 1);
   } else {
