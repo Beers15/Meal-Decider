@@ -18,13 +18,13 @@ const hotFig = makeFigure(hotImg, "Yes");
 const notHotImg = makeImage("resources/imgs/not_hot.png", "not hot");
 const notHotFig = makeFigure(notHotImg, "No");
 const empanadaImg = makeImage("resources/imgs/empanada.png", "empanada");
-const empanadaFig = makeFigure(empanadaImg, "South American");
+const empanadaFig = makeFigure(empanadaImg, "South America");
 const pastaImg = makeImage("resources/imgs/pasta.png", "pasta");
 const pastaFig = makeFigure(pastaImg, "Europe");
 const sushiImg = makeImage("resources/imgs/sushi.png", "hot");
 const sushiFig = makeFigure(sushiImg, "Asia");
 const hotdogImg = makeImage("resources/imgs/hotdog.png", "hotdog");
-const hotdogFig = makeFigure(hotdogImg, "North American");
+const hotdogFig = makeFigure(hotdogImg, "North America");
 
 function makeImage(src, alt) {
   let img = document.createElement('img');
